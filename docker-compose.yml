@@ -1,0 +1,54 @@
+services:
+  app:
+    build:
+      context: angular-app
+    working_dir: /app
+    networks:
+      docker_network:
+        ipv4_address: 172.15.0.4
+    ports:
+      - ${APP_PORT}:80
+    depends_on:
+      - backend
+    volumes:
+      - ./angular-app:/app
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+  
+  database:
+    image: mariadb:10.6.5
+    working_dir: /server
+    environment:
+      MYSQL_DATABASE: "${MARIADB_DATABASE}"
+      MYSQL_USER: "${MARIADB_USER}"
+      MYSQL_PASSWORD: "${MARIADB_PASSWORD}"
+      MYSQL_ROOT_PASSWORD: "${MARIADB_ROOT_PASSWORD}"
+    volumes:
+      - database_volume:/var/lib/mysql
+    networks:
+      docker_network: 
+        ipv4_address: 172.15.0.3
+    ports:
+      - ${MARIADB_PORT}:3306
+  
+  backend:
+    build:
+      context: backend
+    working_dir: /server   
+    depends_on:
+      - database
+    networks:
+      docker_network: 
+        ipv4_address: 172.15.0.2
+    volumes:
+      - ./backend:/server
+
+networks:
+  docker_network:
+    ipam:
+      driver: default
+      config: 
+        - subnet: 172.15.0.0/24
+          gateway: 172.15.0.1
+
+volumes:
+  database_volume:

@@ -5,7 +5,7 @@ services:
     working_dir: /app
     networks:
       docker_network:
-        ipv4_address: 172.15.0.4
+        ipv4_address: 180.15.0.4
     ports:
       - ${APP_PORT}:80
     depends_on:
@@ -26,7 +26,7 @@ services:
       - database_volume:/var/lib/mysql
     networks:
       docker_network: 
-        ipv4_address: 172.15.0.3
+        ipv4_address: 180.15.0.3
     ports:
       - ${MARIADB_PORT}:3306
   
@@ -38,7 +38,7 @@ services:
       - database
     networks:
       docker_network: 
-        ipv4_address: 172.15.0.2
+        ipv4_address: 180.15.0.2
     volumes:
       - ./backend:/server
 
@@ -47,8 +47,8 @@ networks:
     ipam:
       driver: default
       config: 
-        - subnet: 172.15.0.0/24
-          gateway: 172.15.0.1
+        - subnet: 180.15.0.0/24
+          gateway: 180.15.0.1
 
 volumes:
   database_volume:

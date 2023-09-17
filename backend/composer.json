@@ -7,22 +7,24 @@
         "php": ">=7.2.5",
         "ext-ctype": "*",
         "ext-iconv": "*",
-        "doctrine/annotations": "^2.0",
         "doctrine/doctrine-bundle": "^2.10",
         "doctrine/doctrine-migrations-bundle": "^3.2",
         "doctrine/orm": "^2.16",
-        "friendsofsymfony/rest-bundle": "^3.5",
-        "jms/serializer-bundle": "^5.3",
         "nelmio/cors-bundle": "^2.3",
+        "sensio/framework-extra-bundle": "^6.2",
         "symfony/console": "5.4.*",
         "symfony/dotenv": "5.4.*",
         "symfony/flex": "^1.17|^2",
         "symfony/framework-bundle": "5.4.*",
-        "symfony/monolog-bundle": "^3.8",
         "symfony/property-access": "5.4.*",
         "symfony/runtime": "5.4.*",
         "symfony/serializer": "5.4.*",
+        "symfony/web-server-bundle": "^4.4.44",
         "symfony/yaml": "5.4.*"
+    },
+    "require-dev": {
+        "symfony/debug-bundle": "5.4.*",
+        "symfony/maker-bundle": "^1.50"
     },
     "config": {
         "allow-plugins": {
@@ -72,13 +74,5 @@
             "allow-contrib": false,
             "require": "5.4.*"
         }
-    },
-    "require-dev": {
-        "symfony/debug-bundle": "5.4.*",
-        "symfony/maker-bundle": "^1.50",
-        "symfony/stopwatch": "5.4.*",
-        "symfony/var-dumper": "5.4.*",
-        "symfony/web-profiler-bundle": "5.4.*",
-        "symfony/web-server-bundle": "^4.4.44"
     }
 }

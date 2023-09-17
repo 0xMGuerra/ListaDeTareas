@@ -15,4 +15,4 @@ COPY . /server
 
 RUN composer install
 
-CMD ["bin/console", "server:run", "172.15.0.2:8000"]
+#CMD ["bin/console", "server:run", "180.15.0.2:8000"]

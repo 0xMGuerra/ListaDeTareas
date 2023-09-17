@@ -1,0 +1,11 @@
+{
+    "/api" : {
+        "target": {
+            "host": "http://172.15.0.2",   
+            "port": 8000,
+            "protocol": "http:"
+        },              
+        "secure": false,
+        "changeOrigin": true
+    }
+}

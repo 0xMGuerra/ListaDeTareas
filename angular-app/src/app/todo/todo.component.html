@@ -1,0 +1,136 @@
+<div class="container-fluix text-center">
+  <div class="row">
+    <h1>Lista de Tareas</h1>
+    <div class="col-md-3 align-items-start m-2">    
+      <h2>Agregar ToDo</h2>
+      <div class="form-group">
+        <label for="nombre">Nombre: </label>
+        <input [(ngModel)]="nombre" type="text" class="form-control form-control-sm" required/>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-sm-6 mt-2">
+          <label for="estado">Estado: </label>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-sm-6">
+          <select id="estado" name="estado" [(ngModel)]="estado" required>
+            <option value="En proceso">En proceso</option>
+            <option value="Finalizado">Finalizado</option>
+          </select>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-sm-6 mt-5">
+          <button (click)="addToDo()" class="btn btn-primary">Agregar ToDo</button>    
+        </div>
+      </div>  
+    </div>
+    <div class="col-md-4 align-items-start m-2">
+      <!--- TODOS EN PROCESO -->
+      <h3>ToDos en proceso</h3>
+      <table class='table'>
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Estado</th>
+            <th>Fecha</th>
+          </tr>
+        </thead>
+        <tbody>
+            <ng-container *ngFor="let todo of listaToDos; let i = index">
+            <tr *ngIf="todo.Estado === 'En proceso'">
+              <td>
+                <ng-container *ngIf="i !== updateIndex; else updateModeNombre">
+                  {{ todo.Nombre }}
+                </ng-container>
+                <ng-template #updateModeNombre>
+                  <input [(ngModel)]="updateNombre" type="text" required/>
+                </ng-template>
+              </td>
+              <td>
+                <ng-container *ngIf="i !== updateIndex; else updateModeEstado">
+                  {{ todo.Estado }}
+                </ng-container>
+                <ng-template #updateModeEstado>
+                  <select id="estado" name="estado" [(ngModel)]="updateEstado" required>
+                    <option value="En proceso">En proceso</option>
+                    <option value="Finalizado">Finalizado</option>
+                  </select>
+                </ng-template>
+              </td>
+              <td>
+                {{ todo.FechaCreacion | date:"dd-MM-yyyy" }}
+              </td>
+              <td>
+                <div class="row align-items-center mt-4">
+                  <ng-container *ngIf="i !== updateIndex; else updateActions">
+                    <button (click)="startUpdating(i)" class="btn btn-primary btn-sm mb-2">Editar</button>
+                    <button (click)="confirmDelete(todo)" class="btn btn-danger btn-sm mb-2">Eliminar</button>
+                  </ng-container>
+                  <ng-template #updateActions>
+                    <button (click)="updateToDo(todo)" class="btn btn-success btn-sm mb-2">Guardar Cambios</button>
+                    <button (click)="cancelEditing()" class="btn btn-danger btn-sm mb-2">Cancelar</button>
+                  </ng-template>
+                </div>
+              </td>
+            </tr>
+          </ng-container>
+        </tbody>
+      </table>
+    </div>
+    <!--- TODOS FINALIZADOS -->
+    <div class="col-md-4 align-items-start m-2">
+      <h3>ToDos finalizados</h3>
+      <table class='table'>
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Estado</th>
+            <th>Fecha</th>
+          </tr>
+        </thead>
+        <tbody>
+            <ng-container *ngFor="let todo of listaToDos; let i = index">
+            <tr *ngIf="todo.Estado === 'Finalizado'">
+              <td>
+                <ng-container *ngIf="i !== updateIndex; else updateModeNombre">
+                  {{ todo.Nombre }}
+                </ng-container>
+                <ng-template #updateModeNombre>
+                  <input [(ngModel)]="updateNombre" type="text" required/>
+                </ng-template>
+              </td>
+              <td>
+                <ng-container *ngIf="i !== updateIndex; else updateModeEstado">
+                  {{ todo.Estado }}
+                </ng-container>
+                <ng-template #updateModeEstado>
+                  <select id="estado" name="estado" [(ngModel)]="updateEstado" required>
+                    <option value="En proceso">En proceso</option>
+                    <option value="Finalizado">Finalizado</option>
+                  </select>
+                </ng-template>
+              </td>
+              <td>
+                {{ todo.FechaCreacion | date:"dd-MM-yyyy" }}
+              </td>
+              <td>
+                <div class="row align-items-center mt-4">
+                  <ng-container *ngIf="i !== updateIndex; else updateActions">
+                    <button (click)="startUpdating(i)" class="btn btn-primary btn-sm mb-2">Editar</button>
+                    <button (click)="confirmDelete(todo)" class="btn btn-danger btn-sm mb-2">Eliminar</button>
+                  </ng-container>
+                  <ng-template #updateActions>
+                    <button (click)="updateToDo(todo)" class="btn btn-success btn-sm mb-2">Guardar Cambios</button>
+                    <button (click)="cancelEditing()" class="btn btn-danger btn-sm mb-2">Cancelar</button>
+                  </ng-template>
+                </div>
+              </td>
+            </tr>
+          </ng-container>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

@@ -4,6 +4,14 @@
 
 Aplicación de gestión de tareas con Angular como frontend, una API REST en Symfony para el backend y una BBDD MariaDB, cada servicio con su respectivo contenedor Docker.
 
+### Vídeo de ejemplo
+
+
+
+https://github.com/0xMGuerra/ListaDeTareas/assets/145290822/ca8d4c66-b038-43e5-9e87-db64104bde57
+
+
+
 ### Uso
 
 1. Clonar el repositorio:
